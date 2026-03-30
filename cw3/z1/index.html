@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://kit.fontawesome.com/c916e8f31b.js" crossorigin="anonymous"></script>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    const FILMS = [
+        { id: 1, title: 'Oppenheimer', year: 2023, genre: 'Dramat', rating: 5, watched: true },
+        { id: 2, title: 'Dune: Część druga', year: 2024, genre: 'Sci-Fi', rating: 4, watched: false },
+        { id: 3, title: 'Past Lives', year: 2023, genre: 'Romans', rating: 5, watched: true },
+        { id: 4, title: 'Poor Things', year: 2023, genre: 'Komedia', rating: 4, watched: false },
+    ];
+
+    const Star = (stars) =>
+        Array.from({ length: 5 }, (_, i) =>
+            React.createElement('i', { key: i, className: i < stars ? 'fa-solid fa-star' : 'fa-regular fa-star' })
+        );
+
+    function RatingStars({ rating }) {
+        return React.createElement('span', null, ...Star(rating))
+    };
+
+    function FilmCard({ title, year, genre, rating, watched }) {
+        return React.createElement('div', null,
+            React.createElement('h3', null, title, ` (${year})`),
+            React.createElement('span', null, `Gatunek: ${genre}`),
+            React.createElement(RatingStars, { rating }),
+            React.createElement('p', null, `Oglądany: ${watched ? '✓' : null}`)
+        )
+    };
+
+
+    function App() {
+        return React.createElement('div', null,
+            React.createElement('h1', null, '🎬 Biblioteka Filmów'),
+            FILMS.map(film => React.createElement(FilmCard, { ...film, key: film.id }))
+        )
+    };
+
+    console.log(React.createElement('span', null, ...Star(3)))
+    console.log(React.createElement(FilmCard, { title: 'Test', year: 2024, genre: 'Dramat', rating: 3, watched: false }));
+
+    ReactDOM.createRoot(document.getElementById('root')).render(App());
+</script>
+
+</html>
