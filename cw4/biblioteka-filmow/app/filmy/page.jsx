@@ -15,7 +15,7 @@ export default function FilmsPage() {
 		) ?? [];
 
 	useEffect(() => {
-		searchRef.current?.focus(); // 3. po zamontowaniu wywołujesz focus()
+		searchRef.current?.focus(); 
 	}, []);
 
 	if (loading) return <p>Loading...</p>;
@@ -30,7 +30,7 @@ export default function FilmsPage() {
 				value={query}
 				onChange={e => setQuery(e.target.value)}
 			/>
-			<br/>
+			<br />
 			{filtered.map(film => (
 				<Link key={film.id} href={`/filmy/${film.id}`}>
 					{film.title}

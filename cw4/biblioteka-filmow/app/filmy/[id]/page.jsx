@@ -1,19 +1,16 @@
-﻿"use client";
-
 import { notFound } from "next/navigation";
-import { use } from "react";
-import useFetch from "@/hooks/useFetch";
 import FavoriteButton from "@/components/FavoriteButton";
 
-export default function FilmPage({ params }) {
-	const { id } = use(params);
-	const { data, loading, error } = useFetch("/api/filmy");
+export default async function FilmPage({ params }) {
+	const { id } = await params;
 
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Błąd: {error}</p>;
+	const response = await fetch(`http://localhost:3000/api/filmy`, {
+		cache: "no-store",
+	});
+	const films = await response.json();
+	const film = films.find(f => f.id === Number(id));
 
-	const film = data?.find(f => f.id === Number(id));
-	if (!film) return notFound();
+	if (!film) notFound();
 
 	return (
 		<div>
