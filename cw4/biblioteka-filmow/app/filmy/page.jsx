@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import useFetch from "../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 
@@ -30,9 +30,10 @@ export default function FilmsPage() {
 				value={query}
 				onChange={e => setQuery(e.target.value)}
 			/>
+			<br/>
 			{filtered.map(film => (
 				<Link key={film.id} href={`/filmy/${film.id}`}>
-					{film.title} ({film.year}) — {film.genre}
+					{film.title}
 				</Link>
 			))}
 		</div>
