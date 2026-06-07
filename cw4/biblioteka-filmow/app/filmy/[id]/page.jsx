@@ -47,7 +47,7 @@ export default async function FilmPage({ params }) {
 					</p>
 				</div>
 				<div style={{ marginBottom: "1rem" }}>
-					<FavoriteButton />
+					<FavoriteButton filmId={film.id} />
 				</div>
 			</div>
 

@@ -1,4 +1,4 @@
-﻿// app/filmy/[id]/FilmDetails.jsx
+﻿
 
 "use client";
 
@@ -17,7 +17,7 @@ export default function FilmDetails({ id }) {
 
 	return (
 		<div>
-			<FavoriteButton />
+			<FavoriteButton filmId={film.id} />
 			<ul>
 				<li>Id: {film.id}</li>
 				<li>Tytuł: {film.title}</li>
